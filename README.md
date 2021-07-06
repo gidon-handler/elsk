@@ -1,6 +1,3 @@
-# elsk
-# Elsk
-
 ## Setup
 
 Clone this repo.
@@ -13,10 +10,11 @@ Ensure Mongo db is installed and running on port 27017 (defualt).
 ## Local node server
 
 Ensure Node is installed.
-run `npm run dev_server` to start backend server.
+
+Run `npm run dev_server` to start backend server.
 
 ## Local Angular server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+Run `ng serve`. Navigate to `http://localhost:4200/`.
 
 
