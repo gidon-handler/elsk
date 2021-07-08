@@ -1,0 +1,51 @@
+<button routerLink="/">Back to List</button>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <label>First Name:
+    <input formControlName="firstName">
+  </label>
+
+  <label>Last Name:
+    <input formControlName="lastName">
+  </label>
+
+  <label>Email:
+    <input formControlName="email">
+  </label>
+
+  <label>Gender:
+    <input type="radio" value="male" formControlName="gender">Male
+    <input type="radio" value="female" formControlName="gender">Female
+  </label>
+
+  <div formGroupName="address">
+    <label>Street:
+      <input formControlName="street">
+    </label>
+
+    <label>City:
+      <input formControlName="city">
+    </label>
+
+    <label>Country:
+      <input formControlName="country">
+    </label>
+
+    <label>Zip code:
+      <input formControlName="zip">
+    </label>
+  </div>
+
+  <div formArrayName="phoneNumbers">
+    <h4>Phone Numbers</h4>
+    <label *ngFor="let alias of $any(userForm.controls.phoneNumbers).controls; let i=index">Number {{i+1}}
+      <input [formControlName]="i">
+    </label>
+    <button type="button" (click)="addNumber()">Add Phone Number</button>
+  </div>
+
+  <hr>
+  <button type="submit" [disabled]="!userForm.valid">Create / Update User</button>
+
+</form>

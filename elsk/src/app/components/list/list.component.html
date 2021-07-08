@@ -1,0 +1,31 @@
+<table>
+     <thead>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Street</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Number...</th>
+          <th>Edit</th>
+     </thead>
+     <tbody>
+          <tr *ngFor="let user of users$ | async">
+               <td>{{user._id}}</td>
+               <td>{{user.firstName}}</td>
+               <td>{{user.lastName}}</td>
+               <td>{{user.email}}</td>
+               <td>{{user.gender}}</td>
+               <td>{{user.address.street}}</td>
+               <td>{{user.address.city}}</td>
+               <td>{{user.address.country}}</td>
+               <td>{{user.phoneNumbers[0]}}</td>
+               <td style="cursor: pointer"  (click)="editUser(user)">&#9998;</td>
+          </tr>
+     </tbody>
+</table>
+<div>
+     <button (click)="editUser(undefined)">Add new user</button>
+</div>

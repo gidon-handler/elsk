@@ -1,0 +1,17 @@
+form{
+    width: fit-content;
+    margin: 50px auto;
+    box-shadow: 0px 0px 11px 2px grey;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+label {
+    display: block;
+    margin: 15px;
+}
+
+input:not([type=radio]){
+    float: right;
+    margin-left: 14px;
+}

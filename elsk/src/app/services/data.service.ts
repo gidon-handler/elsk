@@ -15,5 +15,13 @@ export class DataService {
     return this.http.get(this.baseUrl+url);
   }
 
+  postData(url: string, data: any){
+      return this.http.post(this.baseUrl+url, data)
+  }
+
+  putData(url: string, id: string, data: any){
+      return this.http.put(this.baseUrl+url+id, data)
+  }
+
 
 }

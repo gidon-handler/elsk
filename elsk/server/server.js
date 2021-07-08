@@ -12,7 +12,7 @@ app.use(express.urlencoded({
 }));
 
 var server = app.listen(4210, () =>
-    console.log("App now running on port", server.address().port)
+    console.log("App running on port", server.address().port)
 );
 
 MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }).then(
@@ -23,14 +23,14 @@ MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }).t
 
 
         app.get("/list", (req, res) => {
-        
+
             userCollection.find({}).toArray().then(result => {
                 res.send(result);
             })
 
         });
 
-        app.post('/create', (req, res) => {
+        app.post('/user', (req, res) => {
 
             userCollection.insertOne(req.body)
                 .then(result => {
@@ -39,16 +39,35 @@ MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }).t
 
         })
 
-        app.put('/update/:id', (req, res) => {
-            console.log(req.body)
+        app.put('/user/:email', (req, res) => {
+            
+            userCollection.findOneAndUpdate(
+                { email: req.params.email },
+                {
+                    $set: {
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        email: req.body.email,
+                        gender: req.body.gender,
+                        address: req.body.address,
+                        phoneNumbers: req.body.phoneNumbers
+                    }
+                },
+                {
+                    upsert: true
+                }
+            ).then(result => {
+                res.json('Success');
+            }).catch(error => console.error(error))
         })
 
-        app.delete('/delete/:id', (req, res) => {
-            console.log(req.body)
+        app.delete('/user/:id', (req, res) => {
+            quotesCollection.deleteOne({ name: req.params.uid })
+                .then(result => {
+                    res.json(`Deleted`)
+                })
+                .catch(error => console.error(error))
         })
-
-
-
     }
 )
 
