@@ -28,7 +28,7 @@ export class UserFormComponent {
     phoneNumbers: new FormArray([])
   });
 
-  constructor(private dataService: DataService, private router: Router, @Inject(CURRENT_USER) private user: any) {
+  constructor(private dataService: DataService, private router: Router, @Inject(CURRENT_USER) public user: any) {
     if(this.user.currentUser){
       this.user.currentUser.phoneNumbers.forEach((number:any) => {
         this.addNumber();
@@ -46,9 +46,13 @@ export class UserFormComponent {
     if(this.user.currentUser)
     this.dataService.putData('user/', this.user.currentUser.email, this.userForm.value).subscribe(console.log);
     else
-    this.dataService.postData('user', this.userForm.value).subscribe(console.log);
+    this.dataService.postData('user', this.userForm.value).subscribe(() => this.router.navigate(['/']));
 
-    this.router.navigate(['/']);
+    
+  }
+
+  deleteUser(){
+    this.dataService.deleteData('user/', this.user.currentUser.email).subscribe(() => this.router.navigate(['/']));
   }
 
 }

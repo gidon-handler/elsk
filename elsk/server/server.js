@@ -61,8 +61,8 @@ MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true }).t
             }).catch(error => console.error(error))
         })
 
-        app.delete('/user/:id', (req, res) => {
-            quotesCollection.deleteOne({ name: req.params.uid })
+        app.delete('/user/:email', (req, res) => {
+            userCollection.deleteOne({ email: req.params.email })
                 .then(result => {
                     res.json(`Deleted`)
                 })

@@ -23,5 +23,9 @@ export class DataService {
       return this.http.put(this.baseUrl+url+id, data)
   }
 
+  deleteData(url: string, id: string){
+      return this.http.delete(this.baseUrl+url+id)
+  }
+
 
 }

@@ -46,6 +46,9 @@
   </div>
 
   <hr>
-  <button type="submit" [disabled]="!userForm.valid">Create / Update User</button>
+  <footer>
+    <button type="submit" [disabled]="!userForm.valid">Create / Update User</button>
+    <button type="button" [disabled]="!user.currentUser" (click)="deleteUser()">Delete User</button>
+  </footer>
 
 </form>
